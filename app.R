@@ -80,14 +80,13 @@ server <- function(input, output) {
     req(input$driveNum)
     selectInput("playId", h3("Select Play"), pbp_data %>% filter(season == input$seasonVal & 
                                                                    week == input$weekVal & game_id == input$gameId 
-                                                                 & drive == input$driveNum) %>%
-                                                          filter(play_type %in% c("run", "pass")) %>% 
+                                                                 & drive == input$driveNum) %>% 
                                                           unique() %>% .$play_id)
   })
   
   getPlayData <- reactive({
     req(input$playId)
-    generalMutateData(pbp_data %>% filter(play_id == input$playId & game_id == input$gameId))
+    pbp_data %>% filter(play_id == input$playId & game_id == input$gameId)
   })
   
   output$simResult <- renderUI({

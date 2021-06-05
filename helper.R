@@ -4,7 +4,7 @@ yacModel <- xgboost::xgb.load('models/ExpectedYAC.model')
 cpModel <- xgboost::xgb.load('models/ExpectedCompletionPercentage.model')
 
 
-pbp_data <- readRDS("./data/pbpData.rds")
+pbp_data <- read.csv('./data/pbpData.csv')#rbind(readRDS(url("https://raw.githubusercontent.com/adiramani/SimulatePlayOutcome/master/data/pbpData_1.rds")), readRDS(url("https://raw.githubusercontent.com/adiramani/SimulatePlayOutcome/master/data/pbpData_2.rds")))
 
 getExpectedAirYards <- function(playData) {
   xAirYardsData <- playData %>% select(yardline_100, era, qtr, down, ydstogo, 
